@@ -21,10 +21,10 @@ jobs:
           echo "{}" > $HOME/.docker/config.json
 
       - name: Build and push with Kaniko
-        uses: aevea/action-kaniko@v0.11.0
+        uses: aevea/action-kaniko@v0.14.0
         with:
-          registry: ghcr.io
-          image: vladkanatov/http-test-application
+          registry: ghcr.io/vladkanatov
+          image: http-test-application
           tag: ${{ github.sha }}
           username: vladkanatov
           password: ${{ secrets.GITHUB_TOKEN }}
