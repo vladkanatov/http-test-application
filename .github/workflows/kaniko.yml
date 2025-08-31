@@ -23,7 +23,7 @@ jobs:
         uses: aevea/action-kaniko@v0.11.0
         with:
           registry: ghcr.io
-          image: vladkanatov/http-test-application
+          image: ${{ github.repository }}
           tag: ${{ github.sha }}
           username: vladkanatov
           password: ${{ secrets.GITHUB_TOKEN }}
