@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      packages: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,4 +28,4 @@ jobs:
           tag: ${{ github.sha }}
           username: vladkanatov
           password: ${{ secrets.GITHUB_TOKEN }}
-          build_file: Dockerfile
+          build_file: ./Dockerfile
