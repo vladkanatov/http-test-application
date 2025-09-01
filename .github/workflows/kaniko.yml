@@ -20,12 +20,19 @@ jobs:
           mkdir -p $HOME/.docker
           echo "{}" > $HOME/.docker/config.json
 
+      - name: Get short SHA
+        id: vars
+        run: echo "short_sha=${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
+
       - name: Build and push with Kaniko
         uses: aevea/action-kaniko@v0.14.0
         with:
           registry: ghcr.io/vladkanatov
           image: http-test-application
-          tag: ${{ github.sha }}
+          tag: latest,${{ steps.vars.outputs.short_sha }},cache
           username: vladkanatov
           password: ${{ secrets.GITHUB_TOKEN }}
           build_file: ./Dockerfile
+          cache: true
+          cache_registry: ghcr.io/vladkanatov
+          cache_ttl: 24h
