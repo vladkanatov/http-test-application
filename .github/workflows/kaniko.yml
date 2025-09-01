@@ -29,10 +29,11 @@ jobs:
         with:
           registry: ghcr.io/vladkanatov
           image: http-test-application
-          tag: latest,${{ steps.vars.outputs.short_sha }},cache
+          tag: ${{ steps.vars.outputs.short_sha }}
           username: vladkanatov
           password: ${{ secrets.GITHUB_TOKEN }}
           build_file: ./Dockerfile
           cache: true
           cache_registry: ghcr.io/vladkanatov
           cache_ttl: 24h
+          extra_args: --destination ghcr.io/vladkanatov/http-test-application:latest --destination ghcr.io/vladkanatov/http-test-application:cache
